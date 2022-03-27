@@ -15,7 +15,7 @@ AWS.config.update({
     accessKeyId: process.env.accessKeyId,
     secretAccessKey: process.env.secretAccessKey,
     sessionToken:process.env.sessionToken,
-    region: process.env.region
+    region: region
 });
 // Create a Secrets Manager client
 var client = new AWS.SecretsManager({
