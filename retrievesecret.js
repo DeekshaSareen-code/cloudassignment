@@ -3,6 +3,7 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
+require('dotenv').config() 
 
 const PORT = 80;
 var AWS = require('aws-sdk'),
@@ -11,10 +12,10 @@ var AWS = require('aws-sdk'),
     secret,
     decodedBinarySecret;
 AWS.config.update({
-    accessKeyId: "ASIAQDZO73YJHEZZNN4P",
-        secretAccessKey: "+68nJoPGatsI0hw7AXLd4M0opoxwuHareiBeswHf",
-        sessionToken:"FwoGZXIvYXdzEDEaDHjuicxfqGEJ099y0CLAAbPDCRG+xouguai+B7Lwb+BiTC3Yqi//hkyMME5Dn98zEs8UPV17mWIKOXGk6YyFtXtY0alTVMrmwh6qrux3OceAiVBNZVXpoHiVkBXah989oNe1gN2Dwf6z183+fZDrgDfbdbPYunQZNFd2L1D5xhigsY8KPGaWz7stSZCh5KrfJIsz6ngO8iggc0PYemJK/uLgP5P1cM/u60H6Ht2PtnGf7dDn0bSv+Yb1wT4kY0dOqrWcAyJZ8T9Aq9PGwU5ZdyimhYKSBjItMMP0ZHnUfqcyhxGvgfl+5IxAw4wIICoHhCVz6az9d+4/sag35uKnxZ7HjJU1",
-        region: "us-east-1"
+    accessKeyId: process.env.accessKeyId,
+    secretAccessKey: process.env.secretAccessKey,
+    sessionToken:process.env.sessionToken,
+    region: process.env.region
 });
 // Create a Secrets Manager client
 var client = new AWS.SecretsManager({
