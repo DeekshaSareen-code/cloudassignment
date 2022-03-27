@@ -4,7 +4,7 @@ var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
 
-const PORT = 5000;
+const PORT = 80;
 var AWS = require('aws-sdk'),
     region = "us-east-1",
     secretName = "assignment-secret",
@@ -88,5 +88,5 @@ client.getSecretValue({SecretId: secretName}, function(err, data) {
       });
     connection.end();
 });
-app.listen(PORT);
+//app.listen(PORT);
 //console.log(JSON.parse(secret))
