@@ -54,7 +54,7 @@ client.getSecretValue({SecretId: secretName}, function(err, data) {
     }
 
     console.log('Connected to database.');
-    con.query("SELECT * FROM students" , function (err, result, fields) { // change to your table name
+    connection.query("SELECT * FROM students" , function (err, result, fields) { // change to your table name
         if (err) throw err;
             console.log(result); //display data from table
         process.exit(); //exit node.js server
