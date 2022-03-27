@@ -69,8 +69,6 @@ client.getSecretValue({SecretId: secretName}, function(err, data) {
      app.use(bodyParser.json())
      app.post('/storestudents', function(req, res) {
         
-        const data = req.body.students;
-        console.log(data)
         var jsondata = req.body.students;
         var values = []
         for(var i=0; i< jsondata.length; i++)
@@ -79,14 +77,24 @@ client.getSecretValue({SecretId: secretName}, function(err, data) {
         console.log(values)
         connection.query('INSERT INTO students (first_name, last_name, banner) VALUES ?', [values], function(err,result) {
             if(err) {
-               res.send('Error');
+               res.status(400).json({ Message: 'Error'});
             }
            else {
-               res.send('Success');
+               res.status(200).json({Message: 'Success'});
             }
           });
       });
-    //connection.end();
+      app.get('/liststudents ', function(req,res){
+        connection.query('Use assignmentdb;')
+        connection.query('Select * from students;', function(err, result){
+            if(err) {
+                res.status(400).json({ Message: 'Error'});
+             }
+            else {
+                res.status(200).json({Message: 'Success', Students: result});
+             }
+        })
+      });
+    
 });
-//app.listen(PORT);
-//console.log(JSON.parse(secret))
+connection.end();
