@@ -73,7 +73,7 @@ client.getSecretValue({SecretId: secretName}, function(err, data) {
         var values = []
         for(var i=0; i< jsondata.length; i++)
         values.push([jsondata[i].first_name,jsondata[i].last_name,jsondata[i].banner]);
-        connection.query('INSERT INTO students (last_name, last_name,banner) VALUES ?', [values], function(err,result) {
+        connection.query('INSERT INTO students (last_name, first_name,banner) VALUES ?', [values], function(err,result) {
             if(err) {
                res.send('Error');
             }
