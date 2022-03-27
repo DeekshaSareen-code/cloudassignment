@@ -4,7 +4,7 @@ var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
 
-const PORT = 8000;
+const PORT = 5000;
 var AWS = require('aws-sdk'),
     region = "us-east-1",
     secretName = "assignment-secret",
@@ -63,7 +63,7 @@ client.getSecretValue({SecretId: secretName}, function(err, data) {
         else {
             console.log('Connected to MySQL');
             app.listen(PORT);
-            console.log('Server listening on port 8000');
+            console.log('Server listening on port 5000');
       }
      });
      app.use(bodyParser.json())
