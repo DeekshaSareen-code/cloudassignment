@@ -65,7 +65,7 @@ client.getSecretValue({SecretId: secretName}, function(err, data) {
             console.log('Server listening on port 3000');
       }
      });
-     app.listen(3000);
+     app.listen(3000 ,'0.0.0.0');
      app.use(bodyParser.json())
      app.post('/storestudents', function(req, res) {
         
