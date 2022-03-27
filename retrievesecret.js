@@ -62,8 +62,8 @@ client.getSecretValue({SecretId: secretName}, function(err, data) {
            
         else {
             console.log('Connected to MySQL');
-            
-            console.log('Server listening on port 80');
+            app.listen(PORT);
+            console.log('Server listening on port 8000');
       }
      });
      app.use(bodyParser.json())
