@@ -61,10 +61,11 @@ client.getSecretValue({SecretId: secretName}, function(err, data) {
            
         else {
             console.log('Connected to MySQL');
-            app.listen(3000);
+            
             console.log('Server listening on port 3000');
       }
      });
+     app.listen(3000);
      app.use(bodyParser.json())
      app.post('/storestudents', function(req, res) {
         const data = req.body.students;
