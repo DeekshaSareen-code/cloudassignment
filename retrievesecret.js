@@ -47,20 +47,36 @@ client.getSecretValue({SecretId: secretName}, function(err, data) {
     port     : JSON.parse(secret).port
     });
 
+
     connection.connect(function(err) {
-    if (err) {
-        console.error('Database connection failed: ' + err.stack);
-        return;
-    }
-
-    console.log('Connected to database.');
-    connection.query("SELECT * FROM students" , function (err, result, fields) { // change to your table name
-      
-    console.log(result); //display data from table
-    process.exit(); //exit node.js server
-    })
-    });
-
+        if (err) {
+            console.error('Database connection failed: ' + err.stack);
+            return;
+        }
+           
+        else {
+            console.log('Connected to MySQL');
+            app.listen(3000);
+            console.log('Server listening on port 3000');
+      }
+     });
+     app.use(bodyParser.json())
+     app.post('/storestudents', function(req, res) {
+        const data = req.body.students;
+        console.log(data)
+        var jsondata = req.body.students;
+        var values = []
+        for(var i=0; i< jsondata.length; i++)
+        values.push([jsondata[i].first_name,jsondata[i].last_name,jsondata[i].banner]);
+        connection.query('INSERT INTO students (last_name, last_name,banner) VALUES ?', [values], function(err,result) {
+            if(err) {
+               res.send('Error');
+            }
+           else {
+               res.send('Success');
+            }
+          });
+      });
     connection.end();
 });
 
