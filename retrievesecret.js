@@ -1,4 +1,9 @@
 var mysql = require('mysql');
+var express = require('express');
+var app = express();
+var path = require('path');
+var bodyParser = require('body-parser');
+
 var AWS = require('aws-sdk'),
     region = "us-east-1",
     secretName = "assignment-secret",
