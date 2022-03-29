@@ -87,8 +87,8 @@ app.post('/storestudents', function(req, res) {
             }
           });
       });
-app.get('/liststudents ', function(req,res){
-        connection.query('Use assignmentdb;')
+app.get('/liststudents', function(req,res){
+        connection.query('Use assignment;')
         connection.query('Select * from students;', function(err, result){
             if(err) {
                 res.status(400).json({ Message: 'Error'});
