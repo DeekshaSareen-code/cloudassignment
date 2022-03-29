@@ -95,15 +95,13 @@ app.get('/liststudents', function(req,res){
                 res.status(400).json({ Message: 'Error'});
              }
             else {
-                const res = result;
+                const res = result.RowDataPacket;
                 console.log(result)
                 Object.entries(res).forEach((entry) => {
                     const [key, value] = entry;
                     console.log(`${key}: ${value}`);
                   });
-                for(var i = 0;i<result.length;i++){
-                    var obj = res[i]
-                }
+               
                 res.send("heelo")
                 ///res.status(200).json({Message: 'Success', Students: result});
              }
