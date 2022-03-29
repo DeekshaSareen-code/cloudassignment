@@ -99,4 +99,4 @@ client.getSecretValue({SecretId: secretName}, function(err, data) {
       });
     
 });
-connection.end();
+//connection.end();
