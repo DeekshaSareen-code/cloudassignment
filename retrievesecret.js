@@ -3,6 +3,7 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
+const { response } = require('express');
 require('dotenv').config() 
 var connection = mysql.createConnection({})
 const PORT = 80;
@@ -94,12 +95,16 @@ app.get('/liststudents', function(req,res){
                 res.status(400).json({ Message: 'Error'});
              }
             else {
-                for(var i = 0;i<res.length;i++){
+                const res = JSON.parse(result);
+                Object.entries(res).forEach((entry) => {
+                    const [key, value] = entry;
+                    console.log(`${key}: ${value}`);
+                  });
+                for(var i = 0;i<result.length;i++){
                     var obj = res[i]
                 }
                 res.send("heelo")
-                res.send("<html> <head></head> <p id=\"demo\"></p> <body><h1> This page was render direcly from the server <p>Hello there welcome to my website</p></h1>const obj = JSON.parse(text);obj.birth = new Date(obj.birth);document.getElementById(\"demo\").innerHTML = obj.firstname + ", " + obj.lastname;</body></html>")
-                //res.status(200).json({Message: 'Success', Students: result});
+                ///res.status(200).json({Message: 'Success', Students: result});
              }
         })
       });
