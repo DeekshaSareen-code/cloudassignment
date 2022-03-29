@@ -94,8 +94,10 @@ app.get('/liststudents', function(req,res){
                 res.status(400).json({ Message: 'Error'});
              }
             else {
-                
-                res.send("<html> <head>server Response</head><body><h1> This page was render direcly from the server <p>Hello there welcome to my website</p></h1></body></html>")
+                for(var i = 0;i<res.length;i++){
+                    var obj = res[i]
+                }
+                res.send("<html> <head></head> <p id=\"demo\"></p> <body><h1> This page was render direcly from the server <p>Hello there welcome to my website</p></h1>const obj = JSON.parse(text);obj.birth = new Date(obj.birth);document.getElementById(\"demo\").innerHTML = obj.firstname + ", " + obj.lastname;</body></html>")
                 //res.status(200).json({Message: 'Success', Students: result});
              }
         })
