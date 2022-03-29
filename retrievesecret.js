@@ -21,10 +21,8 @@ AWS.config.update({
 var client = new AWS.SecretsManager({
     region: region
 });
-app.use(bodyParser.json())
 
-app.listen(PORT, async()=>{
-    client.getSecretValue({SecretId: secretName}, function(err, data) {
+client.getSecretValue({SecretId: secretName}, function(err, data) {
     if (err) {
         if (err.code === 'DecryptionFailureException')
             throw err;
@@ -65,12 +63,11 @@ app.listen(PORT, async()=>{
            
         else {
             console.log('Connected to MySQL');
-           // app.listen(PORT);
+            app.listen(PORT);
             console.log('Server listening on port 5000');
       }
      });
-    })
-});
+     app.use(bodyParser.json())
      app.post('/storestudents', function(req, res) {
         
         var jsondata = req.body.students;
@@ -101,5 +98,5 @@ app.listen(PORT, async()=>{
         })
       });
     
-
-//connection.end();
+});
+connection.end();
