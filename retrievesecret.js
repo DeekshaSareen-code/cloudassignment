@@ -64,8 +64,7 @@ app.listen(PORT, async()=>{
            
         else {
             console.log('Connected to MySQL');
-            app.listen(PORT);
-            console.log('Server listening on port 5000');
+            console.log('Server listening on port 80');
       }
      });
     });
