@@ -4,7 +4,7 @@ var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
 require('dotenv').config() 
-
+var connection = mysql.createConnection({})
 const PORT = 80;
 var AWS = require('aws-sdk'),
     region = "us-east-1",
@@ -48,7 +48,7 @@ app.listen(PORT, async()=>{
     }
     console.log(JSON.parse(secret).host);
     
-    var connection = mysql.createConnection({
+    connection = mysql.createConnection({
     host     : JSON.parse(secret).host,
     user     : JSON.parse(secret).username,
     password : JSON.parse(secret).password,
