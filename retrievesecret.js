@@ -12,9 +12,9 @@ var AWS = require('aws-sdk'),
     secret,
     decodedBinarySecret;
 AWS.config.update({
-    accessKeyId: process.env.accessKeyId,
-    secretAccessKey: process.env.secretAccessKey,
-    sessionToken:process.env.sessionToken,
+    accessKeyId: process.env.aws_access_key_id,
+    secretAccessKey: process.env.aws_secret_access_key,
+    sessionToken:process.env.aws_session_token,
     region: region
 });
 // Create a Secrets Manager client
@@ -22,7 +22,8 @@ var client = new AWS.SecretsManager({
     region: region
 });
 
-client.getSecretValue({SecretId: secretName}, function(err, data) {
+app.listen(PORT, async()=>{
+    client.getSecretValue({SecretId: secretName}, function(err, data) {
     if (err) {
         if (err.code === 'DecryptionFailureException')
             throw err;
@@ -45,7 +46,7 @@ client.getSecretValue({SecretId: secretName}, function(err, data) {
             decodedBinarySecret = buff.toString('ascii');
         }
     }
-    console.log(JSON.parse(secret));
+    console.log(JSON.parse(secret).host);
     
     var connection = mysql.createConnection({
     host     : JSON.parse(secret).host,
@@ -67,8 +68,10 @@ client.getSecretValue({SecretId: secretName}, function(err, data) {
             console.log('Server listening on port 5000');
       }
      });
-     app.use(bodyParser.json())
-     app.post('/storestudents', function(req, res) {
+    });
+});
+app.use(bodyParser.json())
+app.post('/storestudents', function(req, res) {
         
         var jsondata = req.body.students;
         var values = []
@@ -85,7 +88,7 @@ client.getSecretValue({SecretId: secretName}, function(err, data) {
             }
           });
       });
-      app.get('/liststudents ', function(req,res){
+app.get('/liststudents ', function(req,res){
         connection.query('Use assignmentdb;')
         connection.query('Select * from students;', function(err, result){
             if(err) {
@@ -98,5 +101,5 @@ client.getSecretValue({SecretId: secretName}, function(err, data) {
         })
       });
     
-});
+
 //connection.end();
