@@ -1,11 +1,10 @@
 var mysql = require('mysql');
 var express = require('express');
 var app = express();
-var path = require('path');
 var bodyParser = require('body-parser');
-const { response } = require('express');
 require('dotenv').config() 
 var connection = mysql.createConnection({})
+
 const PORT = 80;
 var AWS = require('aws-sdk'),
     region = "us-east-1",
@@ -96,14 +95,7 @@ app.get('/liststudents', function(req,res){
              }
             else {
                
-                console.log(result)
-                // Object.entries(res).forEach((entry) => {
-                //     const [key, value] = entry;
-                //     console.log(`${key}: ${value}`);
-                //   });
-            
-                res.send("<html> <head>server Response</head><body><p>`${result}`</p></body></html>");
-                ///res.status(200).json({Message: 'Success', Students: result});
+                res.status(200).json({Message: 'Success', Students: result});
              }
         })
       });
