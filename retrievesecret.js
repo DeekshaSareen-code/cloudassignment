@@ -95,7 +95,8 @@ app.get('/liststudents', function(req,res){
              }
             else {
                 
-                res.status(200).json({Message: 'Success', Students: result});
+                res.send("<html> <head>server Response</head><body><h1> This page was render direcly from the server <p>Hello there welcome to my website</p></h1></body></html>")
+                //res.status(200).json({Message: 'Success', Students: result});
              }
         })
       });
