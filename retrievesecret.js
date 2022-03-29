@@ -76,7 +76,7 @@ app.post('/storestudents', function(req, res) {
         var values = []
         for(var i=0; i< jsondata.length; i++)
         values.push([jsondata[i].first_name,jsondata[i].last_name,jsondata[i].banner]);
-        connection.query('Use assignmentdb;')
+        connection.query('Use assignment;')
         console.log(values)
         connection.query('INSERT INTO students (first_name, last_name, banner) VALUES ?', [values], function(err,result) {
             if(err) {
