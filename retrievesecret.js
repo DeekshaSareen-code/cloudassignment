@@ -101,8 +101,7 @@ app.get('/liststudents', function(req,res){
                 //     const [key, value] = entry;
                 //     console.log(`${key}: ${value}`);
                 //   });
-               
-                res.send("heelo")
+            
                 res.send("<html> <head>server Response</head><body><p>`${result}`</p></body></html>");
                 ///res.status(200).json({Message: 'Success', Students: result});
              }
