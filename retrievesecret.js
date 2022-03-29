@@ -95,7 +95,8 @@ app.get('/liststudents', function(req,res){
                 res.status(400).json({ Message: 'Error'});
              }
             else {
-                const res = JSON.parse(result);
+                const res = result;
+                console.log(result)
                 Object.entries(res).forEach((entry) => {
                     const [key, value] = entry;
                     console.log(`${key}: ${value}`);
